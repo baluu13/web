@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 600px;
+            margin: 50px auto;
+            padding: 20px 30px;
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #007bff;
+        }
+
+        label {
+            display: inline-block;
+            width: 150px;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        textarea,
+        select {
+            width: 60%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"],
+        input[type="reset"] {
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover,
+        input[type="reset"]:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #e6f2ff;
+            border-radius: 10px;
+        }
+
+        .result h3 {
+            color: #007bff;
+        }
+
+        .result p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Student Registration Form</h2>
+
+        <form id="registrationForm">
+            <label>Full Name:</label>
+            <input type="text" name="fullname" required><br>
+
+            <label>First Name:</label>
+            <input type="text" name="firstname" required><br>
+            <label>Last Name:</label>
+            <input type="text" name="lastname" required><br>
+
+            <label>Gender:</label>
+            <input type="radio" name="gender" value="Male"> Male
+            <input type="radio" name="gender" value="Female"> Female
+            <input type="radio" name="gender" value="Other"> Other<br><br>
+
+            <label>Date of Birth:</label>
+            <input type="date" name="dob" required><br>
+
+            <label>Nationality:</label>
+            <select name="nationality">
+                <option value="Indian">Indian</option>
+                <option value="Other">Other</option>
+            </select><br>
+
+            <label>Contact Number:</label>
+            <input type="text" name="contact" required><br>
+
+            <label>Email ID:</label>
+            <input type="email" name="email" required><br>
+
+            <label>Same Address:</label>
+            <input type="checkbox" name="sameAddress"> Present and Permanent Same<br>
+
+            <label>Address:</label><br>
+            <textarea name="address" rows="4" cols="50"></textarea><br>
+
+            <label>City:</label>
+            <select name="city">
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Bangalore">Bangalore</option>
+                <option value="Delhi">Delhi</option>
+            </select><br>
+
+            <label>State:</label>
+            <select name="state">
+                <option value="Telangana">Telangana</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Delhi">Delhi</option>
+            </select><br>
+
+            <label>Course:</label>
+            <select name="course">
+                <option value="B.Tech">B.Tech</option>
+                <option value="M.Tech">M.Tech</option>
+                <option value="MBA">MBA</option>
+            </select><br>
+
+            <label>Department:</label>
+            <select name="department">
+                <option value="CSE">CSE</option>
+                <option value="ECE">ECE</option>
+                <option value="MECH">MECH</option>
+            </select><br>
+
+            <label>College:</label>
+            <select name="college">
+                <option value="Sreenidhi">Sreenidhi</option>
+                <option value="IIT">IIT</option>
+                <option value="NIT">NIT</option>
+            </select><br>
+
+            <label>Board:</label>
+            <select name="board">
+                <option value="JNTU">JNTU</option>
+                <option value="Osmania">Osmania</option>
+                <option value="Anna University">Anna University</option>
+            </select><br>
+
+            <label>Year of Joining:</label>
+            <select name="joining_year">
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+            </select><br>
+
+            <label>Year of Passing:</label>
+            <select name="passing_year">
+                <option value="2025">2025</option>
+                <option value="2026">2026</option>
+                <option value="2027">2027</option>
+            </select><br>
+
+            <label>Technical Skills:</label><br>
+            <input type="checkbox" name="skills" value="C"> C
+            <input type="checkbox" name="skills" value="Java"> Java
+            <input type="checkbox" name="skills" value="Python"> Python
+            <input type="checkbox" name="skills" value="Web Development"> Web Development<br><br>
+
+            <input type="submit" value="Submit">
+            <input type="reset" value="Reset">
+        </form>
+
+        <div class="result" id="result" style="display: none;">
+            <h3>Submitted Details:</h3>
+            <div id="output"></div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("registrationForm").addEventListener("submit", function(e){
+            e.preventDefault();
+
+            const form = e.target;
+            const data = new FormData(form);
+
+            const skills = [];
+            form.querySelectorAll('input[name="skills"]:checked').forEach(cb => skills.push(cb.value));
+
+            const gender = form.querySelector('input[name="gender"]:checked');
+            const genderValue = gender ? gender.value : '';
+
+            let output = `
+                <p><strong>Full Name:</strong> ${data.get("fullname")}</p>
+                <p><strong>First Name:</strong> ${data.get("firstname")}</p>
+                <p><strong>Last Name:</strong> ${data.get("lastname")}</p>
+                <p><strong>Gender:</strong> ${genderValue}</p>
+                <p><strong>Date of Birth:</strong> ${data.get("dob")}</p>
+                <p><strong>Nationality:</strong> ${data.get("nationality")}</p>
+                <p><strong>Contact Number:</strong> ${data.get("contact")}</p>
+                <p><strong>Email ID:</strong> ${data.get("email")}</p>
+                <p><strong>Same Address:</strong> ${data.get("sameAddress") ? "Yes" : "No"}</p>
+                <p><strong>Address:</strong> ${data.get("address")}</p>
+                <p><strong>City:</strong> ${data.get("city")}</p>
+                <p><strong>State:</strong> ${data.get("state")}</p>
+                <p><strong>Course:</strong> ${data.get("course")}</p>
+                <p><strong>Department:</strong> ${data.get("department")}</p>
+                <p><strong>College:</strong> ${data.get("college")}</p>
+                <p><strong>Board:</strong> ${data.get("board")}</p>
+                <p><strong>Year of Joining:</strong> ${data.get("joining_year")}</p>
+                <p><strong>Year of Passing:</strong> ${data.get("passing_year")}</p>
+                <p><strong>Technical Skills:</strong> ${skills.join(", ")}</p>
+            `;
+
+            document.getElementById("output").innerHTML = output;
+            document.getElementById("result").style.display = "block";
+        });
+    </script>
+
+</body>
+</html>

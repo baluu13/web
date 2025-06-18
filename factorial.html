@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Factorial Calculator</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f0f4f8;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  h1 {
+    color: #333;
+    margin-bottom: 20px;
+  }
+  label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+  }
+  input[type=number] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  button:hover {
+    background-color: #0056b3;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>Factorial Calculator</h1>
+    <input type="number" id="numberInput" />
+    <button id="calculateBtn">Calculate</button>
+  </div>
+
+<script>
+  var btn = document.getElementById('calculateBtn');
+  btn.onclick = function() {
+    var input = document.getElementById('numberInput').value;
+    var num = Number(input);
+
+    if (input === '' || num < 0 || num % 1 !== 0) {
+      alert('Please enter a valid non-negative integer.');
+      return;
+    }
+
+    var factorial = 1;
+    for (var i = 2; i <= num; i++) {
+      factorial = factorial * i;
+    }
+
+    alert(factorial);
+  };
+</script>
+</body>
+</html>

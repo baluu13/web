@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Grade Calculator</title>
+</head>
+<body>
+  <h2>Grade Calculator</h2>
+  <script>
+    var m1 = parseFloat(prompt("Enter marks for Subject 1:"));
+    var m2 = parseFloat(prompt("Enter marks for Subject 2:"));
+    var m3 = parseFloat(prompt("Enter marks for Subject 3:"));
+    var m4 = parseFloat(prompt("Enter marks for Subject 4:"));
+    var m5 = parseFloat(prompt("Enter marks for Subject 5:"));
+
+    var total = m1 + m2 + m3 + m4 + m5;
+    var average = total / 5;
+
+    var grade;
+    if (average >= 90) {
+      grade = "A+";
+    } else if (average >= 80) {
+      grade = "A";
+    } else if (average >= 70) {
+      grade = "B";
+    } else if (average >= 60) {
+      grade = "C";
+    } else if (average >= 50) {
+      grade = "D";
+    } else {
+      grade = "F (Fail)";
+    }
+
+   
+    document.write("<p>Total Marks: " + total + "</p>");
+    document.write("<p>Average Marks: " + average + "</p>");
+    document.write("<p>Grade: " + grade + "</p>");
+  </script>
+</body>
+</html>

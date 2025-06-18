@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Average of Two Numbers</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      text-align: center;
+      padding-top: 100px;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 1.5em;
+      color: #333;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 5px;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Average Calculator</h1>
+  <button onclick="calculateAverage()">Find Average</button>
+  <div id="result"></div>
+
+  <script>
+    function calculateAverage() {
+      let num1 = prompt("Enter the first number:");
+      let num2 = prompt("Enter the second number:");
+
+      // Convert input strings to numbers
+      let number1 = parseFloat(num1);
+      let number2 = parseFloat(num2);
+
+      if (isNaN(number1) || isNaN(number2)) {
+        document.getElementById("result").innerText = "Please enter valid numbers.";
+        return;
+      }
+
+      let average = (number1 + number2) / 2;
+      document.getElementById("result").innerText = "The average is: " + average;
+    }
+  </script>
+
+</body>
+</html>
+	
